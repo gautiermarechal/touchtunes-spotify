@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 import displayArtistPopularity from "../../handlers/DisplayArtistPopularity";
+import fetchSingleArtistInfo from "../../handlers/FetchSingleArtistInfo";
 
-const Results = ({ search }) => {
+const Results = ({ search, resultRef }) => {
   const [showResults, setShowResults] = useState(false);
   const results = useSelector((state) => state.search.artists);
+  const token = useSelector((state) => state.authentification.token);
 
   useEffect(() => {
     if (!results) {
@@ -23,7 +26,7 @@ const Results = ({ search }) => {
     <>
       {results ? (
         results.items ? (
-          <ResultContainer show={showResults}>
+          <ResultContainer show={showResults} ref={resultRef}>
             <ResultsTitleContainer>
               <ResultsTitle>Results for "{search}"</ResultsTitle>
             </ResultsTitleContainer>
@@ -31,26 +34,28 @@ const Results = ({ search }) => {
               {results.items.map(
                 (artist) =>
                   artist.images[0] && (
-                    <ResultListItem>
-                      <ArtistImageContainer>
-                        <ArtistImage
-                          src={
-                            artist.images[0] ? artist.images[0].url : "image"
-                          }
-                        />
-                      </ArtistImageContainer>
-                      <ArtistInfoContainer>
-                        <ArtistsTagsContainer>
-                          <ArtistName>{artist.name}</ArtistName>
-                          <ArtistFollowers>
-                            {artist.followers.total} followers
-                          </ArtistFollowers>
-                        </ArtistsTagsContainer>
-                        <ArtistRatings>
-                          {displayArtistPopularity(artist.popularity)}
-                        </ArtistRatings>
-                      </ArtistInfoContainer>
-                    </ResultListItem>
+                    <Link to={`/artist/${artist.id}`}>
+                      <ResultListItem>
+                        <ArtistImageContainer>
+                          <ArtistImage
+                            src={
+                              artist.images[0] ? artist.images[0].url : "image"
+                            }
+                          />
+                        </ArtistImageContainer>
+                        <ArtistInfoContainer>
+                          <ArtistsTagsContainer>
+                            <ArtistName>{artist.name}</ArtistName>
+                            <ArtistFollowers>
+                              {artist.followers.total} followers
+                            </ArtistFollowers>
+                          </ArtistsTagsContainer>
+                          <ArtistRatings>
+                            {displayArtistPopularity(artist.popularity)}
+                          </ArtistRatings>
+                        </ArtistInfoContainer>
+                      </ResultListItem>
+                    </Link>
                   )
               )}
             </ResultList>

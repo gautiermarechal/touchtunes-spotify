@@ -11,16 +11,18 @@ const SearchBar = () => {
   const [search, setSearch] = useState("");
   const resultRef = useRef(null);
   useEffect(() => {
-    const listener = (event) => {
-      if (event.code === "Enter") {
-        window.scrollTo(0, resultRef.current.focus());
-        console.log("entered");
-      }
-    };
-    document.addEventListener("keydown", listener);
-    return () => {
-      document.removeEventListener("keydown", listener);
-    };
+    if (search !== "") {
+      const listener = (event) => {
+        if (event.code === "Enter") {
+          resultRef.current.scrollIntoView();
+          console.log("entered");
+        }
+      };
+      document.addEventListener("keydown", listener);
+      return () => {
+        document.removeEventListener("keydown", listener);
+      };
+    }
   }, [search]);
   return (
     <>
@@ -32,7 +34,7 @@ const SearchBar = () => {
             setSearch(e.target.value);
           }}
         />
-        <Results search={search} ref={resultRef} />
+        <Results search={search} resultRef={resultRef} />
       </Wrapper>
     </>
   );

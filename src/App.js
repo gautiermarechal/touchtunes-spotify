@@ -10,6 +10,7 @@ import GlobalStyles from "./components/GlobalStyles";
 import Login from "./components/LoginPage/Login";
 import SearchBar from "./components/ArtistSearchPage/SearchBar";
 import ArtistSearch from "./components/ArtistSearchPage/ArtistSearch";
+import SingleArtist from "./components/SingleArtistPage/SingleArtist";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
             </Route>
             <Route path="/artist-search">
               <ArtistSearch />
+            </Route>
+            <Route path="/artist/:id">
+              <SingleArtist />
             </Route>
           </Switch>
         </Route>
