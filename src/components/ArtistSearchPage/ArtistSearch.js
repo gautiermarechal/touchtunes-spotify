@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
+import {
+  errorAccessToken,
+  receiveAccessToken,
+} from "../../redux/actions/AuthentificationActions";
 import SearchBar from "./SearchBar";
 
 const ArtistSearch = () => {
-  const [accessToken, setAccessToken] = useState("");
+  const dispatch = useDispatch();
   useEffect(() => {
-    //Retrieve access token from url
-    let currentHash = window.location.hash;
-    const endIndex = currentHash.indexOf("&");
-    currentHash = currentHash.substring(14, endIndex);
-    setAccessToken(currentHash);
+    const currentURL = new URL(window.location.href);
+    //User denied access
+    if (currentURL.search === "?error=access_denied") {
+      dispatch(errorAccessToken());
+    } else {
+      //User accepts access => Retrieve access token from url
+      let currentHash = window.location.hash;
+      const endIndex = currentHash.indexOf("&");
+      currentHash = currentHash.substring(14, endIndex);
+      dispatch(receiveAccessToken(currentHash));
+    }
   }, []);
   return (
     <>
@@ -23,7 +34,8 @@ const ArtistSearch = () => {
 
 const MainContainer = styled.div`
   display: flex;
-  height: 80vh;
+  flex-direction: column;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
   background-color: ${COLORS.lightBlue};

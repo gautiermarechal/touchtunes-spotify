@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
+import fetchArtistSearch from "../../handlers/FetchArtistSearch";
+import Results from "./Results";
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.authentification.token);
+  const [search, setSearch] = useState("");
+  const resultRef = useRef(null);
+  useEffect(() => {
+    const listener = (event) => {
+      if (event.code === "Enter") {
+        window.scrollTo(0, resultRef.current.focus());
+        console.log("entered");
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [search]);
   return (
     <>
       <Wrapper>
-        <SearchInput placeholder="Search for an artist" />
-        <ResultContainer>
-          <ResultList>
-            <ResultItem></ResultItem>
-          </ResultList>
-        </ResultContainer>
+        <SearchInput
+          placeholder="Search for an artist"
+          onChange={(e) => {
+            fetchArtistSearch(e, token, dispatch);
+            setSearch(e.target.value);
+          }}
+        />
+        <Results search={search} ref={resultRef} />
       </Wrapper>
     </>
   );
@@ -42,18 +63,5 @@ const SearchInput = styled.input`
     font-family: "Chivo", sans-serif;
   }
 `;
-
-const ResultContainer = styled.div`
-  width: 80vw;
-  background-color: ${COLORS.white};
-  margin: 50px 100px 50px 100px;
-`;
-
-const ResultList = styled.ul`
-  padding: 20px;
-  list-style-type: none;
-`;
-
-const ResultItem = styled.li``;
 
 export default SearchBar;

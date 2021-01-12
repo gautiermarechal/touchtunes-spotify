@@ -29,7 +29,7 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 100vh;
   background-color: ${COLORS.lightBlue};
 `;
 
