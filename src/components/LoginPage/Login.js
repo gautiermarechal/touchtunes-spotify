@@ -29,7 +29,8 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 80vh;
+  background-color: ${COLORS.lightBlue};
 `;
 
 const LoginButton = styled.button`
@@ -42,14 +43,20 @@ const LoginButton = styled.button`
   width: 400px;
   background-color: ${COLORS.lightBlue};
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.5s;
 
   &:hover {
     background-color: ${COLORS.pink};
+    color: ${COLORS.white};
+
+    h1 {
+      color: ${COLORS.white};
+    }
   }
 `;
 
 const Title = styled.h1`
+  transition: 0.5s;
   color: ${COLORS.black};
 `;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 
@@ -15,15 +15,17 @@ const NavigationBar = () => {
 const MainContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 80px;
-  background-color: ${COLORS.green};
+  height: 140px;
+  background-color: ${COLORS.black};
+  // border-bottom: solid 1px white;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  position: sticky;
 `;
 
 const Title = styled.h1`
   color: ${COLORS.white};
+  font-size: 50px;
 `;
 
 export default NavigationBar;

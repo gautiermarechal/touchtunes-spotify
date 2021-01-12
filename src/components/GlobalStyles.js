@@ -7,7 +7,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background-color: ${COLORS.black};
-    font-family: 'Lato', sans-serif;
+    font-family: 'Chivo', sans-serif;
+    a{
+      text-decoration: none;
+    }
   }
 `;
 

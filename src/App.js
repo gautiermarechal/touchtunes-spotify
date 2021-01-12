@@ -8,6 +8,8 @@ import {
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import GlobalStyles from "./components/GlobalStyles";
 import Login from "./components/LoginPage/Login";
+import SearchBar from "./components/ArtistSearchPage/SearchBar";
+import ArtistSearch from "./components/ArtistSearchPage/ArtistSearch";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
             <Redirect exact from="/" to="/login" />
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/artist-search">
+              <ArtistSearch />
             </Route>
           </Switch>
         </Route>
