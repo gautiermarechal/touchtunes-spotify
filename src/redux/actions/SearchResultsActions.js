@@ -10,3 +10,8 @@ export const receiveArtistsSearch = (data) => ({
 export const errorArtistsSearch = () => ({
   type: "ERROR_ARTISTS_SEARCH",
 });
+
+export const recordURL = (data) => ({
+  type: "RECORD_URL",
+  data: data,
+});

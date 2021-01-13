@@ -22,37 +22,45 @@ const SingleArtist = () => {
             <AuthorName>{singleArtist.singleArtist.name}</AuthorName>
             <AlbumsTitle>Albums</AlbumsTitle>
           </HeaderContainer>
-          <AlbumsContainer>
-            {singleArtist.singleArtist.albums && (
-              <AlbumsGrid>
-                {singleArtist.singleArtist.albums.items.map((album) => {
-                  return (
-                    <Album>
-                      <AlbumCoverContainer>
-                        <AlbumCover src={album.images[0].url} />
-                      </AlbumCoverContainer>
-                      <AlbumInfoContainer>
-                        <AlbumTagsContainer>
-                          <AlbumTitle>{album.name}</AlbumTitle>
-                          <AlbumArtists>
-                            {album.artists.map((artist) => (
-                              <p>{artist.name}</p>
-                            ))}
-                          </AlbumArtists>
-                          <AlbumDate>{album.release_date}</AlbumDate>
-                          <AlbumNoOfTracks>
-                            {album.total_tracks} tracks
-                          </AlbumNoOfTracks>
-                        </AlbumTagsContainer>
-                      </AlbumInfoContainer>
-                      <PreviewSpotify>Preview</PreviewSpotify>
-                    </Album>
-                  );
-                })}
-              </AlbumsGrid>
-            )}
-            ;
-          </AlbumsContainer>
+          <Wrapper>
+            <AlbumsContainer>
+              {singleArtist.singleArtist.albums && (
+                <AlbumsGrid>
+                  {singleArtist.singleArtist.albums.items.map((album) => {
+                    return (
+                      <LinkWrapper
+                        target="_blank"
+                        href={album.external_urls.spotify}
+                      >
+                        <Album>
+                          <AlbumCoverContainer>
+                            <AlbumCover src={album.images[0].url} />
+                          </AlbumCoverContainer>
+                          <AlbumInfoContainer>
+                            <AlbumTagsContainer>
+                              <AlbumTitle>{album.name}</AlbumTitle>
+                              <AlbumArtists>
+                                {album.artists.map((artist) => (
+                                  <ArtistName>{artist.name}</ArtistName>
+                                ))}
+                              </AlbumArtists>
+                              <AlbumDate>{album.release_date}</AlbumDate>
+                              <AlbumNoOfTracks>
+                                {album.total_tracks} tracks
+                              </AlbumNoOfTracks>
+                            </AlbumTagsContainer>
+                          </AlbumInfoContainer>
+                          <PreviewSpotify>
+                            <ButtonLabel>Preview</ButtonLabel>
+                          </PreviewSpotify>
+                        </Album>
+                      </LinkWrapper>
+                    );
+                  })}
+                </AlbumsGrid>
+              )}
+            </AlbumsContainer>
+          </Wrapper>
         </>
       ) : null}
     </>
@@ -72,6 +80,9 @@ const AuthorImage = styled.img`
   height: auto;
   width: 300px;
   border-radius: 7px;
+  @media (max-width: 500px) {
+    width: 80%;
+  }
 `;
 
 const AuthorName = styled.h1`
@@ -84,19 +95,38 @@ const AlbumsTitle = styled.h4`
   font-style: italic;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+`;
+
 const AlbumsContainer = styled.div`
   display: flex;
-  width: 80vw;
   background-color: ${COLORS.white};
-  margin: 50px 100px 50px 100px;
   flex-direction: column;
+  margin: 50px 100px 50px 100px;
+
+  @media (max-width: 600px) {
+    margin: 20px;
+  }
 `;
 
 const AlbumsGrid = styled.div`
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
   margin: 0px 30px 30px 30px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 50% 50%;
+  }
+
+  @media (max-width: 427px) {
+    grid-template-columns: 100%;
+  }
 `;
+
+const LinkWrapper = styled.a``;
 
 const Album = styled.div`
   display: flex;
@@ -104,12 +134,19 @@ const Album = styled.div`
   width: auto;
   margin: 30px;
   cursor: pointer;
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
   transition: 0.2s;
+  height: 90%;
+  justify-content: space-between;
 
   &:hover {
     background-color: ${COLORS.pink};
     color: ${COLORS.white};
+  }
+
+  @media (max-width: 940px) {
+    padding: 10px;
+    margin: 20px;
   }
 `;
 
@@ -138,8 +175,12 @@ const AlbumTitle = styled.h3`
   margin-bottom: 3px;
 `;
 
-const AlbumArtists = styled.p`
+const AlbumArtists = styled.div`
   margin: 0;
+`;
+
+const ArtistName = styled.p`
+  margin-right: 5px;
 `;
 
 const AlbumDate = styled.p`
@@ -150,6 +191,26 @@ const AlbumNoOfTracks = styled.p`
   display: flex;
 `;
 
-const PreviewSpotify = styled.button``;
+const PreviewSpotify = styled.button`
+  border: none;
+  background-color: ${COLORS.lightBlue};
+  color: ${COLORS.black};
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  @media (max-width: 940px) {
+    margin: 0px;
+  }
+`;
+
+const ButtonLabel = styled.h4`
+  color: ${COLORS.pink};
+`;
 
 export default SingleArtist;

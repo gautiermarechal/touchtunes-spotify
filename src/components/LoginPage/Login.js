@@ -29,7 +29,7 @@ const MainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 80vh;
   background-color: ${COLORS.lightBlue};
 `;
 
@@ -53,11 +53,18 @@ const LoginButton = styled.button`
       color: ${COLORS.white};
     }
   }
+
+  @media (max-width: 408px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h1`
   transition: 0.5s;
   color: ${COLORS.black};
+  @media (max-width: 408px) {
+    font-size: 7vw;
+  }
 `;
 
 const SpotifyIcon = styled(FaSpotify)`

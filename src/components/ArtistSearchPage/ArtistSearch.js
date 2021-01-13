@@ -6,6 +6,7 @@ import {
   errorAccessToken,
   receiveAccessToken,
 } from "../../redux/actions/AuthentificationActions";
+import { recordURL } from "../../redux/actions/SearchResultsActions";
 import SearchBar from "./SearchBar";
 
 const ArtistSearch = () => {
@@ -21,6 +22,7 @@ const ArtistSearch = () => {
       const endIndex = currentHash.indexOf("&");
       currentHash = currentHash.substring(14, endIndex);
       dispatch(receiveAccessToken(currentHash));
+      dispatch(recordURL(window.location.hash));
     }
   }, []);
   return (
@@ -35,7 +37,7 @@ const ArtistSearch = () => {
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 80vh;
   align-items: center;
   justify-content: center;
   background-color: ${COLORS.lightBlue};

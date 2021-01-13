@@ -78,6 +78,14 @@ const ResultList = styled.div`
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
   margin: 0px 30px 30px 30px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 50% 50%;
+  }
+
+  @media (max-width: 427px) {
+    grid-template-columns: 100%;
+  }
 `;
 
 const ResultListItem = styled.div`
@@ -94,11 +102,23 @@ const ResultListItem = styled.div`
     background-color: ${COLORS.pink};
     color: ${COLORS.white};
   }
+
+  @media (max-width: 780px) {
+    padding: 0px;
+    margin: 10px;
+  }
 `;
 
 const ArtistImageContainer = styled.div`
   height: auto;
   overflow: hidden;
+  max-height: 172px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+
+  @media (max-width: 427px) {
+    max-height: none;
+  }
 `;
 
 const ArtistImage = styled.img`
@@ -140,5 +160,8 @@ const ResultsTitleContainer = styled.div`
 
 const ResultsTitle = styled.h1`
   color: ${COLORS.pink};
+  @media (max-width: 377px) {
+    font-size: 7vw;
+  }
 `;
 export default Results;

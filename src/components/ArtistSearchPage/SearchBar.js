@@ -64,6 +64,12 @@ const SearchInput = styled.input`
     font-size: 50px;
     font-family: "Chivo", sans-serif;
   }
+  @media (max-width: 610px) {
+    width: 80%;
+    ::placeholder {
+      font-size: 8vw;
+    }
+  }
 `;
 
 export default SearchBar;

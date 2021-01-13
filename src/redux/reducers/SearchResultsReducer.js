@@ -1,4 +1,4 @@
-const initialState = { status: "idle", artists: {} };
+const initialState = { status: "idle", url: "", artists: {} };
 
 const searchResultsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,6 +8,8 @@ const searchResultsReducer = (state = initialState, action) => {
       return { ...state, status: "received", artists: action.data };
     case "ERROR_TOKEN":
       return { ...state, status: "error" };
+    case "RECORD_URL":
+      return { ...state, url: action.data };
     default:
       return { ...state };
   }
