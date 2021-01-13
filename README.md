@@ -13,6 +13,7 @@ I hope you'll like it! 😀
 
 - .env file should not be commited to github. I did not put the file in gitignore for you to test the project locally
 - In production, we should not put .env in front-end as it will be present in the build files. Again, I put the file in front-end for demo purpose.
+- This is an MVP. For production, next steps would be to make sure all API credentials are well hidden. I would also add animations to improve the UI and UX.
 
 ## Screenshots
 
