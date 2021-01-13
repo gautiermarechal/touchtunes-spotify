@@ -44,6 +44,7 @@ const LoginButton = styled.button`
   background-color: ${COLORS.lightBlue};
   cursor: pointer;
   transition: 0.5s;
+  outline: none;
 
   &:hover {
     background-color: ${COLORS.pink};
