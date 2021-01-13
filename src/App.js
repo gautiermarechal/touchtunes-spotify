@@ -5,10 +5,11 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+
+//Components Imports
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import GlobalStyles from "./components/GlobalStyles";
 import Login from "./components/LoginPage/Login";
-import SearchBar from "./components/ArtistSearchPage/SearchBar";
 import ArtistSearch from "./components/ArtistSearchPage/ArtistSearch";
 import SingleArtist from "./components/SingleArtistPage/SingleArtist";
 

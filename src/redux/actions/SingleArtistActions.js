@@ -1,4 +1,4 @@
-import fetchSingleArtistInfo from "../../handlers/FetchSingleArtistInfo";
+import fetchSingleArtistInfo from "../../handlers/fetchSingleArtistInfo";
 
 export const requestSingleArtist = () => ({
   type: "REQUEST_SINGLE_ARTIST",

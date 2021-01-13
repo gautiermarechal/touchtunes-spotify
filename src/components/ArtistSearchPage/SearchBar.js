@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+
 import { COLORS } from "../../constants";
-import fetchArtistSearch from "../../handlers/FetchArtistSearch";
+import fetchArtistSearch from "../../handlers/fetchArtistSearch";
 import Results from "./Results";
 
 const SearchBar = () => {
@@ -15,7 +16,6 @@ const SearchBar = () => {
       const listener = (event) => {
         if (event.code === "Enter") {
           resultRef.current.scrollIntoView();
-          console.log("entered");
         }
       };
       document.addEventListener("keydown", listener);

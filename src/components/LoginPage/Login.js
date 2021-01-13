@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { COLORS } from "../../constants";
 import { FaSpotify } from "react-icons/fa";
-import fetchSpotifyAuthentification from "../../handlers/FetchSpotifyAuthentification";
+
+import { COLORS } from "../../constants";
+
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
-const Login = () => {
-  console.log(CLIENT_ID);
 
-  console.log(REDIRECT_URI);
+const Login = () => {
   return (
     <>
       <MainContainer>
@@ -45,6 +44,7 @@ const LoginButton = styled.button`
   cursor: pointer;
   transition: 0.5s;
   outline: none;
+  padding: 30px;
 
   &:hover {
     background-color: ${COLORS.pink};

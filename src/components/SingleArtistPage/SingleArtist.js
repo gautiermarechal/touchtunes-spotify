@@ -12,7 +12,7 @@ const SingleArtist = () => {
   const singleArtist = useSelector((state) => state.singleArtist);
   useEffect(() => {
     dispatch(asyncReceiveSingleArtistInfo(id, token));
-  }, []);
+  }, [dispatch, id, token]);
   return (
     <>
       {singleArtist.status === "received" ? (
@@ -31,6 +31,7 @@ const SingleArtist = () => {
                       <LinkWrapper
                         target="_blank"
                         href={album.external_urls.spotify}
+                        key={album.id}
                       >
                         <Album>
                           <AlbumCoverContainer>
@@ -41,7 +42,9 @@ const SingleArtist = () => {
                               <AlbumTitle>{album.name}</AlbumTitle>
                               <AlbumArtists>
                                 {album.artists.map((artist) => (
-                                  <ArtistName>{artist.name}</ArtistName>
+                                  <ArtistName key={artist.id}>
+                                    {artist.name}
+                                  </ArtistName>
                                 ))}
                               </AlbumArtists>
                               <AlbumDate>{album.release_date}</AlbumDate>

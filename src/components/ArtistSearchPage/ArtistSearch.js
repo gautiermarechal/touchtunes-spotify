@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
@@ -24,7 +24,7 @@ const ArtistSearch = () => {
       dispatch(receiveAccessToken(currentHash));
       dispatch(recordURL(window.location.hash));
     }
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <MainContainer>

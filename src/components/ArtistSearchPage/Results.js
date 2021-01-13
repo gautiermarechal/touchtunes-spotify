@@ -1,15 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import { COLORS } from "../../constants";
-import displayArtistPopularity from "../../handlers/DisplayArtistPopularity";
-import fetchSingleArtistInfo from "../../handlers/FetchSingleArtistInfo";
+import displayArtistPopularity from "../../handlers/displayArtistPopularity";
 
 const Results = ({ search, resultRef }) => {
   const [showResults, setShowResults] = useState(false);
   const results = useSelector((state) => state.search.artists);
-  const token = useSelector((state) => state.authentification.token);
 
   useEffect(() => {
     if (!results) {
@@ -34,7 +33,7 @@ const Results = ({ search, resultRef }) => {
               {results.items.map(
                 (artist) =>
                   artist.images[0] && (
-                    <Link to={`/artist/${artist.id}`}>
+                    <Link to={`/artist/${artist.id}`} key={artist.id}>
                       <ResultListItem>
                         <ArtistImageContainer>
                           <ArtistImage

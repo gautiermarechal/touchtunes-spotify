@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -16,7 +16,7 @@ const NavigationBar = () => {
           <Title>Spotify Artist Search</Title>
         </Link>
         <SearchButton
-          show={singleArtist.status === "received" ? true : false}
+          show={singleArtist.status === "received"}
           onClick={() => {
             history.push(`/artist-search/${searchUrl}`);
           }}
