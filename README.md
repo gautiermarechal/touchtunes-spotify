@@ -2,7 +2,8 @@
 
 ## How to run it
 
-- Move to repo: `cd <repo-name>`
+- Clone the repo `git clone https://github.com/gautiermarechal/touchtunes-spotify.git`
+- Move to repo: `cd touchtunes-spotify`
 - Install dependencies: `npm install`
 - Run on localhost port 3000 `npm start`
 
